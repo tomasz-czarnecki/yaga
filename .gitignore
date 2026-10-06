@@ -1,0 +1,11 @@
+# Local tooling
+.claude/
+.vercel/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env*
