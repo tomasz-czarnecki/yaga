@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.4.0/dist/model-viewer.min.js"></script>
   <script src="main.js" defer></script>
 </head>
 <body>
@@ -18,7 +19,7 @@
     <div class="site-header-inner">
       <a href="#top" class="brand">
         <span class="brand-mark"></span>
-        <span class="brand-name">yaga.sh</span>
+        <span class="brand-name">YagaLabs</span>
       </a>
       <a href="#contact" class="btn btn-header">Talk to Yaga</a>
     </div>
@@ -51,6 +52,44 @@
           <p class="lead">Yaga Labs builds agentic products and <span class="highlight">interfaces that explain themselves</span>. Pani Yaga is the studio's conscience. She has opinions about your model, and she's usually right.</p>
           <div class="actions">
             <a href="#contact" class="btn btn-caps">Bring her your model</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="embroidery" aria-hidden="true"></div>
+    </section>
+
+    <section id="hero-3d" class="hero hero-3d" aria-label="Pani Yaga in 3D. Click the floor and she walks there.">
+      <div class="stage">
+        <div class="stage-floor" aria-hidden="true"></div>
+        <p class="stage-hint">Click anywhere. She'll walk there.</p>
+        <div class="marker" aria-hidden="true"></div>
+        <div class="stroll">
+          <div class="yaga">
+            <div class="yaga-glow"></div>
+            <div class="yaga-shadow"></div>
+            <model-viewer
+              class="yaga-model"
+              src="assets/pani-yaga.glb"
+              alt="3D Pani Yaga"
+              animation-name="idle.001"
+              autoplay
+              camera-orbit="0deg 85deg 1.3m"
+              camera-target="0m 0.54m 0m"
+              environment-image="assets/yaga-studio.hdr"
+              exposure="1.15"
+              shadow-intensity="0"
+              interaction-prompt="none"></model-viewer>
+          </div>
+        </div>
+        <div class="bubble-anchor">
+          <div class="bubble" aria-live="polite">
+            <div class="bubble-cloud">
+              <span class="bubble-ghost">Three hundred years I read tea leaves. Now they call it a confidence interval.</span>
+              <span class="bubble-text"><span class="bubble-typed"></span><span class="bubble-rest"></span></span>
+            </div>
+            <div class="bubble-dot bubble-dot-small"></div>
+            <div class="bubble-dot bubble-dot-large"></div>
           </div>
         </div>
       </div>

@@ -221,7 +221,8 @@ a:hover { opacity: 0.9; }
 .eyebrow-small { font-size: 11px; letter-spacing: 0.22em; }
 .diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); flex: none; }
 
-h1 {
+h1,
+.hero-title {
   font-weight: 500;
   font-size: clamp(44px, 5.8vw, 100px);
   line-height: 0.95;
@@ -259,6 +260,111 @@ h1 {
   background-position: center;
   border-top: 1px solid rgba(214, 164, 70, 0.35);
 }
+
+/* 3D hero: a floor with depth; click and she walks there */
+
+.stage {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.stage-floor {
+  position: absolute;
+  inset: 38% 0 0 0; /* the horizon sits at 38% of the stage */
+  pointer-events: none;
+  overflow: hidden;
+  background: radial-gradient(ellipse 60% 90% at 50% 100%, rgba(207, 110, 66, 0.12), transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%);
+}
+
+.stage-floor::before {
+  content: '';
+  position: absolute;
+  left: -60%;
+  right: -60%;
+  top: 0;
+  height: 260%;
+  background-image:
+    linear-gradient(rgba(240, 234, 220, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 234, 220, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  transform: perspective(420px) rotateX(64deg);
+  transform-origin: 50% 0;
+}
+
+.stage-hint {
+  position: absolute;
+  top: clamp(24px, 4vw, 40px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.stage-hint.is-hidden { opacity: 0; }
+
+.marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 14px;
+  margin: -7px 0 0 -22px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.marker.is-on { animation: marker 1.2s ease-out forwards; }
+
+@keyframes marker {
+  from { opacity: 0.9; transform: scale(0.4); }
+  to { opacity: 0; transform: scale(1.6); }
+}
+
+.stroll {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.hero-3d .yaga { height: min(68vh, 640px, 150vw); }
+
+.yaga-model {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  --progress-bar-color: var(--accent);
+}
+
+.bubble-anchor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.bubble-anchor .bubble { left: 0; bottom: 0; }
+.bubble-anchor.is-left .bubble { left: auto; right: 0; }
+.bubble-anchor.is-left .bubble-cloud { transform-origin: calc(100% - 12px) 100%; }
+.bubble-anchor.is-left .bubble-dot-small { left: auto; right: -14px; }
+.bubble-anchor.is-left .bubble-dot-large { left: auto; right: 0; }
 
 /* Contact */
 
